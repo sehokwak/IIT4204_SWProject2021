@@ -1,0 +1,6 @@
+0 background
+1 car
+2 cat
+3 chair
+4 dog
+5 person

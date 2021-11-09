@@ -1,0 +1,11 @@
+0 background
+1 car
+2 cat
+3 chair
+4 dog
+5 person
+6 bus
+7 motorbike
+8 sofa
+9 train
+10 tvmonitor
