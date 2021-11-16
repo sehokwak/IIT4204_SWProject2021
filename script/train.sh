@@ -3,6 +3,7 @@ GPU=0
 DATASET_ROOT=dataset
 SAVE_ROOT=log
 SESSION=voc12_cls
+MAIN_ROOT=IIT4204_SWProject2021
 
 
 # Default setting
@@ -12,7 +13,7 @@ BACKBONE=resnet50_cls
 
 
 # 1. train classification network
-CUDA_VISIBLE_DEVICES=${GPU} python3 main.py \
+CUDA_VISIBLE_DEVICES=${GPU} python3 ${MAIN_ROOT}/main.py \
     --dataset ${DATASET} \
     --train_list metadata/${DATASET}/train_10.txt \
     --session ${SESSION} \
@@ -28,7 +29,7 @@ CUDA_VISIBLE_DEVICES=${GPU} python3 main.py \
 INFER_DATA=train_10 # train / train_aug
 TRAINED_WEIGHT=${SAVE_ROOT}/${SESSION}/checkpoint_cls.pth
 GPU=0
-CUDA_VISIBLE_DEVICES=${GPU} python3 infer.py \
+CUDA_VISIBLE_DEVICES=${GPU} python3 ${MAIN_ROOT}/infer.py \
     --dataset ${DATASET} \
     --infer_list metadata/${DATASET}/${INFER_DATA}.txt \
     --img_root ${IMG_ROOT} \
@@ -42,7 +43,7 @@ CUDA_VISIBLE_DEVICES=${GPU} python3 infer.py \
 ## 3. evaluate CAM
 GT_ROOT=${DATASET_ROOT}/mask_10/
 
-CUDA_VISIBLE_DEVICES=${GPU} python3 evaluate_png.py \
+CUDA_VISIBLE_DEVICES=${GPU} python3 ${MAIN_ROOT}/evaluate_png.py \
     --dataset ${DATASET} \
     --datalist metadata/${DATASET}/${INFER_DATA}.txt \
     --gt_dir ${GT_ROOT} \
