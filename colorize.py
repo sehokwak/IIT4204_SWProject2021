@@ -2,6 +2,7 @@ import os
 import cv2
 import numpy as np
 
+from settings import NUM_CLASSES
 
 LABEL_COLOR = [(0, 0, 0)
                # 0=background
@@ -14,7 +15,7 @@ LABEL_COLOR = [(0, 0, 0)
 def convert_color(image_path):
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     new_image = np.zeros((image.shape[0], image.shape[1], 3))
-    for i in range(10):
+    for i in range(int(NUM_CLASSES)):
         new_image[np.where(image == i)] = LABEL_COLOR[i]
     return new_image[:, :, ::-1]
 
@@ -29,11 +30,11 @@ if __name__ == '__main__':
     final = []
     for img in image_list[4:8]:
         # Path for original image
-        origin_path = 'dataset/image_10/'
+        origin_path = f'dataset/image_{NUM_CLASSES}/'
         # Path for your predicted image
         pred_path = 'log/session/pred_images/'
         # Path for Colorized GT image (if you don't have this folder in your dataset, plz contact TAs)
-        gt_path = 'dataset/mask_10'
+        gt_path = f'dataset/mask_{NUM_CLASSES}'
 
         origin = os.path.join(origin_path, img+'.jpg')
         origin = cv2.imread(origin, cv2.IMREAD_COLOR)

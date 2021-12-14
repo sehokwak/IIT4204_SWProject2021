@@ -6,6 +6,8 @@ import numpy as np
 from PIL import Image
 from tqdm import tqdm
 
+from settings import HOME_ROOT, NUM_CLASSES
+
 
 class IOUMetric:
     """
@@ -57,7 +59,7 @@ def parse_args():
 
     # dataset information
     if args.dataset == 'voc12':
-        args.num_classes = 11
+        args.num_classes = int(NUM_CLASSES) + 1
         args.ignore_label = 255
     return args
 
@@ -75,7 +77,7 @@ def get_labels(label_file):
 if __name__ == '__main__':
     # get arguments
     args = parse_args()
-    idx2num, idx2label = get_labels(os.path.join('metadata', args.dataset, 'labels_10.txt'))
+    idx2num, idx2label = get_labels(os.path.join(HOME_ROOT, 'metadata', args.dataset, f'labels_{NUM_CLASSES}.txt'))
 
     mIOU = IOUMetric(num_classes=args.num_classes)
 

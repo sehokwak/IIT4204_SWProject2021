@@ -12,17 +12,17 @@ import torch.nn.functional as F
 from torch.multiprocessing import Process
 
 from util import imutils, pyutils
-from util.imutils import HWC_to_CHW
-from network.resnet38d import Normalize
+from util.imutils import HWC_to_CHW, Normalize
 from metadata.dataset import load_img_id_list, load_img_label_list_from_npy
 
+from settings import NUM_CLASSES
 
 start = time.time()
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--network", default="network.resnet38_cls", type=str)
+    parser.add_argument("--network", default="network.resnet50_cls", type=str)
     parser.add_argument("--weights", required=True, type=str)
     parser.add_argument("--n_gpus", type=int, default=1)
     parser.add_argument("--infer_list", default="voc12/train.txt", type=str)
@@ -38,8 +38,10 @@ def parse_args():
     parser.add_argument("--dataset", default='voc12', type=str)
     args = parser.parse_args()
 
-    if args.dataset == 'voc12':
-        args.num_classes = 10
+    # if args.dataset == 'voc12':
+    #     args.num_classes = 10
+
+    args.num_classes = int(NUM_CLASSES)
 
     # model information
     args.model_num_classes = args.num_classes

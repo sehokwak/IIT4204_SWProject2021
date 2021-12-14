@@ -6,13 +6,14 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset
 
+from settings import HOME_ROOT, NUM_CLASSES
 
 def load_img_id_list(img_id_file):
     return open(img_id_file).read().splitlines()
 
 
 def load_img_label_list_from_npy(img_name_list, dataset):
-    cls_labels_dict = np.load(f'metadata/{dataset}/cls_labels_10.npy', allow_pickle=True).item()
+    cls_labels_dict = np.load(f'{HOME_ROOT}/metadata/{dataset}/cls_labels_{NUM_CLASSES}.npy', allow_pickle=True).item()
     return [cls_labels_dict[img_name] for img_name in img_name_list]
 
 

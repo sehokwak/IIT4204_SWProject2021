@@ -8,7 +8,9 @@ from metadata.dataset import \
 
 from util import imutils
 from util.imutils import Normalize
+from module.HaS import HaS
 
+IMAGE_MEAN_VALUE = [0.485, 0.456, 0.406]
 
 def get_dataloader(args):
 
@@ -20,11 +22,14 @@ def get_dataloader(args):
             imutils.RandomResizeLong
             (args.resize_size[0], args.resize_size[1]),
             transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            HaS(32, 0.4, IMAGE_MEAN_VALUE),
+            transforms.ToPILImage(),
             transforms.ColorJitter
             (brightness=0.3, contrast=0.3, saturation=0.3, hue=0.1),
             np.asarray,
             Normalize(),
-            imutils.RandomCrop(args.crop_size),
+            imutils.RandomCrop(args.crop_size), 
             imutils.HWC_to_CHW,
             torch.from_numpy
         ]))

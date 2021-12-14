@@ -11,12 +11,7 @@ This is a repository for the final project of IIT4204, SW Project, Yonsei Univer
 
 ## Execution
 
-#### train, inference and evaluation
-```
-# You must check where the results are saved.
+### Run on Google Colab GPU
+Set paths in `settings.py`, `train.sh`, `FinalColab.ipynb`
 
-git clone https://github.com/halbielee/IIT4204_SWProject2021.git
-
-cd IIT4204_SWProject2021
-bash script/train.sh
-```
+Run `FinalColab.ipynb` on Google Colab
