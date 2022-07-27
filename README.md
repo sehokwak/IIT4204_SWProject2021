@@ -12,6 +12,18 @@ This is a repository for the final project of IIT4204, SW Project, Yonsei Univer
 ## Execution
 
 ### Run on Google Colab GPU
-Set paths in `settings.py`, `train.sh`, `FinalColab.ipynb`
+Set number of classes in `settings.py` and `script/train.sh`
+```
+NUM_CLASSES=10   # 5 or 10
+```
+
+
+Set `HOMEROOT` path in `settings.py`,  `script/train.sh`, and `FinalColab.ipynb`
+```
+HOMEROOT="path/to/IIT4204_SWProject2021"
+```
 
 Run `FinalColab.ipynb` on Google Colab
+
+## Results
+Read the final paper [here](https://github.com/sehokwak/IIT4204_SWProject2021/blob/main/files/finalreport.pdf)
